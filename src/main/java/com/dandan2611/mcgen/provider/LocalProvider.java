@@ -1,7 +1,5 @@
 package com.dandan2611.mcgen.provider;
 
-import com.dandan2611.mcgen.StartupPayload;
-import org.apache.commons.cli.CommandLine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +8,7 @@ public class LocalProvider extends Provider {
     private static final Logger LOGGER = LoggerFactory.getLogger(LocalProvider.class);
 
     @Override
-    public void init(CommandLine commandLine, StartupPayload payload) {
+    public void init() {
         LOGGER.info("--------------------------------------------------------");
         LOGGER.info("LOCAL PROVIDER - By dandan2611");
         LOGGER.info("Use local instance to create, generate and merge maps");

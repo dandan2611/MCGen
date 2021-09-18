@@ -16,11 +16,9 @@ import java.lang.reflect.Constructor;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
-public class Main {
+public class McGenMain {
 
-    static final Logger LOGGER = LoggerFactory.getLogger(Main.class);
-
-    public static Provider RUNNING_PROVIDER;
+    static final Logger LOGGER = LoggerFactory.getLogger(McGenMain.class);
 
     public static void main(String[] args) {
         // Command line args parsing
@@ -121,25 +119,9 @@ public class Main {
             System.exit(0);
         }
 
-        // Payload creation
-
-        final StartupPayload startupPayload = new StartupPayload(provider, state, versionsConfig, enteredVersion);
-
-        Class<? extends Provider> providerClass = provider.getProviderClass();
-        try {
-            Constructor<?> constructor = providerClass.getConstructor(null);
-            Provider providerInstance = (Provider) constructor.newInstance();
-
-            RUNNING_PROVIDER = providerInstance;
-
-            LOGGER.info("Launching " + providerClass.getName() + " provider");
-
-            providerInstance.init(commandLine, startupPayload);
-        } catch (Exception e) {
-            LOGGER.error("Unable to instantiate provider", e);
-            System.exit(1);
-        }
-
+        // Application init
+        McGenApplication application = new McGenApplication(commandLine, provider, state, versionsConfig, enteredVersion);
+        application.init();
 
     }
 
