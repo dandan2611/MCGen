@@ -33,6 +33,8 @@ public class McGenMain {
                 "Download a fresh executable and replace the cached one (if there is one)", false);
         Option cleanupOption = getOption("c", "cleanup", false,
                 "Cleanup system before using it again", false);
+        Option serversOptions = getOption("se", "servers", true,
+                "Number of servers per worker (must be a multiple of 1,3,5,7,9)", true);
 
         Option helpOption = getOption("h", "help", false, "Show help text",
                 false);
@@ -42,6 +44,7 @@ public class McGenMain {
         options.addOption(versionOption);
         options.addOption(freshExecutableOption);
         options.addOption(cleanupOption);
+        options.addOption(serversOptions);
         options.addOption(helpOption);
 
         CommandLineParser parser = new DefaultParser();

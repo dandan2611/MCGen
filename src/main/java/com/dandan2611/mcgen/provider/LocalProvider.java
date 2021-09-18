@@ -1,5 +1,6 @@
 package com.dandan2611.mcgen.provider;
 
+import com.dandan2611.mcgen.minecraft.Server;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 public class LocalProvider extends Provider {
@@ -17,6 +19,8 @@ public class LocalProvider extends Provider {
     public static final File CACHE_DIRECTORY = new File("cache/");
     public static final File CACHE_SERVER_EXECUTABLE = new File(CACHE_DIRECTORY, "server.jar");
     public static final File CACHE_SERVERS_DIRECTORY = new File(CACHE_DIRECTORY, "servers/");
+
+    private ArrayList<Server> servers;
 
     @Override
     public void init() {
@@ -84,6 +88,13 @@ public class LocalProvider extends Provider {
         }
         else
             LOGGER.info("Executable already exist in cache, if you wish to download it again use --fresh-executable argument");
+
+        // Servers creation
+        /*File serverDirectory = new File(CACHE_SERVERS_DIRECTORY, "server-" + identifier);
+        if(serverDirectory.exists())
+            throw new UnsupportedOperationException("Unable to create server files with id " + identifier + ", " +
+                    "files already exist!");
+        serverDirectory.mkdirs();*/
     }
 
     private void workState() {
