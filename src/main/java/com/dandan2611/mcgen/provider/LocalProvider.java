@@ -1,9 +1,14 @@
 package com.dandan2611.mcgen.provider;
 
+import org.apache.commons.cli.Option;
+import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class LocalProvider extends Provider {
 
@@ -21,6 +26,33 @@ public class LocalProvider extends Provider {
         // Cache directory creation
         if(!CACHE_DIRECTORY.exists())
             CACHE_DIRECTORY.mkdirs();
+
+        // Version executable download
+        String serverVersion = getApplication().getVersion();
+        URL versionDownloadUrl = null;
+        try {
+            versionDownloadUrl = new URL(getApplication().getVersionsConfig().getVersion(serverVersion));
+        } catch (MalformedURLException e) {
+            LOGGER.error("Malformed version URL", e);
+            return;
+        }
+
+        LOGGER.info("Fetching executable {}", getApplication().getVersion());
+        File cachedServerExecutable = new File(CACHE_DIRECTORY, "server-" + serverVersion + ".jar");
+
+        boolean forceFreshExecutable = getApplication().getCommandLine().hasOption("--fresh-executable");
+
+        if(!cachedServerExecutable.exists() || forceFreshExecutable) {
+            LOGGER.info("Downloading version {} {}", getApplication().getVersion(), (forceFreshExecutable ? "[FORCED BY --fresh-executable]" : ""));
+            try {
+                FileUtils.copyURLToFile(versionDownloadUrl, cachedServerExecutable);
+            } catch (IOException e) {
+                LOGGER.error("Unable to download version executable jar", e);
+                return;
+            }
+        }
+        else
+            LOGGER.info("Executable already exist in cache, if you wish to download it again use --fresh-executable argument");
 
     }
 

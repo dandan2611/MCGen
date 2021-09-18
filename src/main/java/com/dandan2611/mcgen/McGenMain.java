@@ -3,7 +3,6 @@ package com.dandan2611.mcgen;
 import com.dandan2611.mcgen.config.AppProvider;
 import com.dandan2611.mcgen.config.AppState;
 import com.dandan2611.mcgen.config.VersionsConfig;
-import com.dandan2611.mcgen.provider.Provider;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.apache.commons.cli.*;
@@ -12,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.*;
-import java.lang.reflect.Constructor;
 import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 
@@ -25,15 +23,23 @@ public class McGenMain {
 
         Options options = new Options();
 
-        Option stateOption = getOption("s", "state", true, "Select the starting state of the application", true);
-        Option providerOption = getOption("p", "provider", true, "Select the provider for the servers (local)", true);
-        Option versionOption = getOption("v", "version", true, "Select the version for the servers", true);
+        Option stateOption = getOption("s", "state", true,
+                "Select the starting state of the application", true);
+        Option providerOption = getOption("p", "provider", true,
+                "Select the provider for the servers (local)", true);
+        Option versionOption = getOption("v", "version", true,
+                "Select the version for the servers", true);
 
-        Option helpOption = getOption("h", "help", false, "Show help text", false);
+        Option freshExecutableOption = getOption("fe", "fresh-executable", false,
+                "Download a fresh executable and replace the cached one (if there is one)", false);
+
+        Option helpOption = getOption("h", "help", false, "Show help text",
+                false);
 
         options.addOption(stateOption);
         options.addOption(providerOption);
         options.addOption(versionOption);
+        options.addOption(freshExecutableOption);
         options.addOption(helpOption);
 
         CommandLineParser parser = new DefaultParser();
