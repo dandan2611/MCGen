@@ -1,6 +1,5 @@
 package com.dandan2611.mcgen.provider;
 
-import org.apache.commons.cli.Option;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +22,11 @@ public class LocalProvider extends Provider {
         LOGGER.info("Use local instance to create, generate and merge maps");
         LOGGER.info("--------------------------------------------------------");
 
+        switch (getApplication().getState()) {
+            case INIT -> initState();
+            case WORK -> workState();
+            case MERGE -> mergeState();
+        }
         // Cache directory creation
         if(!CACHE_DIRECTORY.exists())
             CACHE_DIRECTORY.mkdirs();
@@ -53,6 +57,23 @@ public class LocalProvider extends Provider {
         }
         else
             LOGGER.info("Executable already exist in cache, if you wish to download it again use --fresh-executable argument");
+
+    }
+
+    @Override
+    public boolean isInitialized() {
+        return false;
+    }
+
+    private void initState() {
+
+    }
+
+    private void workState() {
+
+    }
+
+    private void mergeState() {
 
     }
 

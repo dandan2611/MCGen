@@ -22,6 +22,12 @@ public abstract class Provider {
     public abstract void init();
 
     /**
+     * Check if the provider is already initialized (ready to begin generation or ready to merge)
+     * @return If the provider is initialized
+     */
+    public abstract boolean isInitialized();
+
+    /**
      * Called when the whole process is finished and a cleanup is needed
      */
     public abstract void exit();
