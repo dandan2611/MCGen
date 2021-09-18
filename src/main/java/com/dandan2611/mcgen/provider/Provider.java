@@ -28,7 +28,12 @@ public abstract class Provider {
     public abstract boolean isInitialized();
 
     /**
-     * Called when the whole process is finished and a cleanup is needed
+     * Cleanup system
+     */
+    public abstract void cleanup();
+
+    /**
+     * Called when the whole process is finished
      */
     public abstract void exit();
 
