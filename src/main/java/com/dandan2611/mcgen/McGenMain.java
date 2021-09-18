@@ -24,7 +24,7 @@ public class McGenMain {
         Options options = new Options();
 
         Option stateOption = getOption("s", "state", true,
-                "Select the starting state of the application", true);
+                "Select the starting state of the application (init, work, merge)", true);
         Option providerOption = getOption("p", "provider", true,
                 "Select the provider for the servers (local)", true);
         Option versionOption = getOption("v", "version", true,
