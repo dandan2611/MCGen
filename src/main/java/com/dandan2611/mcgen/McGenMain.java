@@ -24,14 +24,15 @@ public class McGenMain {
         Options options = new Options();
 
         Option stateOption = getOption("s", "state", true,
-                "Select the starting state of the application (init, work, merge)", true);
+                "Select the starting state of the application (init, work, merge, cleanup)", true);
         Option providerOption = getOption("p", "provider", true,
                 "Select the provider for the servers (local)", true);
         Option versionOption = getOption("v", "version", true,
                 "Select the version for the servers", true);
-
         Option freshExecutableOption = getOption("fe", "fresh-executable", false,
                 "Download a fresh executable and replace the cached one (if there is one)", false);
+        Option cleanupOption = getOption("c", "cleanup", false,
+                "Cleanup system before using it again", false);
 
         Option helpOption = getOption("h", "help", false, "Show help text",
                 false);
@@ -40,6 +41,7 @@ public class McGenMain {
         options.addOption(providerOption);
         options.addOption(versionOption);
         options.addOption(freshExecutableOption);
+        options.addOption(cleanupOption);
         options.addOption(helpOption);
 
         CommandLineParser parser = new DefaultParser();

@@ -4,6 +4,7 @@ public enum AppState {
 
     INIT,
     WORK,
-    MERGE;
+    MERGE,
+    CLEANUP;
 
 }
