@@ -7,7 +7,7 @@
     <groupId>com.dandan2611.mcgen</groupId>
     <artifactId>MCGen</artifactId>
     <packaging>pom</packaging>
-    <version>0.1</version>
+    <version>0.2</version>
     <modules>
         <module>Worker</module>
         <module>Common</module>
