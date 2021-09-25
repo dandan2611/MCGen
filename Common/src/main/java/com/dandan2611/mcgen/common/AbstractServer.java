@@ -1,6 +1,6 @@
 package com.dandan2611.mcgen.common;
 
-public abstract class Server {
+public abstract class AbstractServer {
 
     /**
      * Start the game server
