@@ -35,6 +35,12 @@ public class Worker {
             System.exit(0);
         }
 
+        // Check if master
+        if(commandLine.hasOption(StartupOptions.MASTER_OPTION.getOpt())) {
+            LOGGER.info("Launching as master");
+            // TODO: Master server init
+        }
+
     }
 
     public static void printHelp() {
