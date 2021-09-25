@@ -22,6 +22,12 @@ public class StartupOptions {
     public static final Option MASTER_OPTION = getOption("m", "master", false,
             "Set the current worker as MASTER", false);
 
+    /**
+     * Connect option
+     */
+    public static final Option CONNECT_OPTION = getOption("c", "connect", true,
+            "Connect to the specified master node", true);
+
     static {
         OPTIONS = new Options();
         OPTIONS.addOption(HELP_OPTION);
