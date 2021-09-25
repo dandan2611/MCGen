@@ -6,7 +6,13 @@
 
     <groupId>com.dandan2611.mcgen</groupId>
     <artifactId>MCGen</artifactId>
+    <packaging>pom</packaging>
     <version>0.1</version>
+    <modules>
+        <module>Worker</module>
+        <module>Common</module>
+        <module>Initializer</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>16</maven.compiler.source>
@@ -19,11 +25,6 @@
             <artifactId>commons-cli</artifactId>
             <version>1.4</version>
         </dependency>
-        <!--<dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.32</version>
-        </dependency>-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
