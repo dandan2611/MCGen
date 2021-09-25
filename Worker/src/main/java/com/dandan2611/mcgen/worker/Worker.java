@@ -41,6 +41,10 @@ public class Worker {
             // TODO: Master server init
         }
 
+        String connectIp = commandLine.getOptionValue(StartupOptions.CONNECT_OPTION.getOpt());
+
+        LOGGER.info("Specified master ip: {}", connectIp);
+        // TODO: Master server connect
     }
 
     public static void printHelp() {
