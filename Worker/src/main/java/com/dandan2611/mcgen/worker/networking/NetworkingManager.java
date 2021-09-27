@@ -10,6 +10,7 @@ public class NetworkingManager {
     private boolean master = false;
 
     private MasterServer masterServer;
+    private WorkerClient workerClient;
 
     public void initMaster() {
         this.master = true;
@@ -18,9 +19,9 @@ public class NetworkingManager {
         masterServer.init();
     }
 
-    public void initWorker(String masterIp) {
-
     public void initWorker(String masterIp, int masterPort) {
+        this.workerClient = new WorkerClient(masterIp, masterPort);
+        workerClient.init();
     }
 
     public void exit() {
