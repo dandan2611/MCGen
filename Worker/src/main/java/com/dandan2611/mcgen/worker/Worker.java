@@ -63,7 +63,7 @@ public class Worker {
         String connectIp = commandLine.getOptionValue(StartupOptions.CONNECT_OPTION.getOpt());
 
         LOGGER.info("Specified master ip: {}", connectIp);
-        networkingManager.initWorker(connectIp);
+        networkingManager.initWorker(connectIp, 44123);
     }
 
     public static void printHelp() {

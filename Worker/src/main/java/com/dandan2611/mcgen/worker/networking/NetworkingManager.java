@@ -20,6 +20,7 @@ public class NetworkingManager {
 
     public void initWorker(String masterIp) {
 
+    public void initWorker(String masterIp, int masterPort) {
     }
 
     public void exit() {
