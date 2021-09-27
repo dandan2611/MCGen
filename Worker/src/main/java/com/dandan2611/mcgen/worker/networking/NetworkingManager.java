@@ -11,6 +11,8 @@ public class NetworkingManager {
 
     public void initMaster() {
         this.master = true;
+
+
     }
 
     public void initWorker(String masterIp) {
@@ -18,6 +20,16 @@ public class NetworkingManager {
     }
 
     public void exit() {
+        if(master)
+            exitMaster();
+        exitWorker();
+    }
+
+    private void exitMaster() {
+
+    }
+
+    private void exitWorker() {
 
     }
 
