@@ -1,8 +1,12 @@
 package com.dandan2611.mcgen.worker;
 
+import com.dandan2611.mcgen.common.maven.PomReader;
 import org.apache.commons.cli.*;
+import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
 
 public class Worker {
 
@@ -15,7 +19,16 @@ public class Worker {
      * @param args Startup parameters
      */
     public void init(String[] args) {
-        LOGGER.info("--- Launching worker");
+        String version = "UNKNOWN";
+
+        try {
+            PomReader pomReader = new PomReader();
+            version = pomReader.getModel().getVersion();
+        } catch (IOException | XmlPullParserException e) {
+            LOGGER.warn("Unable to read worker pom.xml", e);
+        }
+
+        LOGGER.info("--- Launching worker version {}", version);
 
         // Command line parsing
         CommandLine commandLine = null;
