@@ -30,7 +30,7 @@ public class NetworkingManager {
         exitWorker();
     }
 
-    private void exitMaster() {
+    public void exitMaster() {
         masterServer.exit();
     }
 
