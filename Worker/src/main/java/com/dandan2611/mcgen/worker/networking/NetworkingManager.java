@@ -9,10 +9,13 @@ public class NetworkingManager {
 
     private boolean master = false;
 
+    private MasterServer masterServer;
+
     public void initMaster() {
         this.master = true;
 
-
+        this.masterServer = new MasterServer(44123);
+        masterServer.init();
     }
 
     public void initWorker(String masterIp) {
@@ -26,7 +29,7 @@ public class NetworkingManager {
     }
 
     private void exitMaster() {
-
+        masterServer.exit();
     }
 
     private void exitWorker() {
