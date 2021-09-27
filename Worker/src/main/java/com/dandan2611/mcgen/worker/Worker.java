@@ -1,6 +1,7 @@
 package com.dandan2611.mcgen.worker;
 
 import com.dandan2611.mcgen.common.maven.PomReader;
+import com.dandan2611.mcgen.worker.networking.NetworkingManager;
 import org.apache.commons.cli.*;
 import org.codehaus.plexus.util.xml.pull.XmlPullParserException;
 import org.slf4j.Logger;
@@ -13,6 +14,8 @@ public class Worker {
     private static final Logger LOGGER = LoggerFactory.getLogger(Worker.class);
 
     public static final String COMMAND_LINE_SYNTAX = "worker";
+
+    private NetworkingManager networkingManager;
 
     /**
      * Init worker
@@ -48,16 +51,19 @@ public class Worker {
             System.exit(0);
         }
 
+        // NetworkingManager instantiation
+        this.networkingManager = new NetworkingManager();
+
         // Check if master
         if(commandLine.hasOption(StartupOptions.MASTER_OPTION.getOpt())) {
             LOGGER.info("Launching as master");
-            // TODO: Master server init
+            networkingManager.initMaster();
         }
 
         String connectIp = commandLine.getOptionValue(StartupOptions.CONNECT_OPTION.getOpt());
 
         LOGGER.info("Specified master ip: {}", connectIp);
-        // TODO: Master server connect
+        networkingManager.initWorker(connectIp);
     }
 
     public static void printHelp() {
