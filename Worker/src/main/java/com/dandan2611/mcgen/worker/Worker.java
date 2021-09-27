@@ -55,7 +55,8 @@ public class Worker {
         this.networkingManager = new NetworkingManager();
 
         // Check if master
-        if(commandLine.hasOption(StartupOptions.MASTER_OPTION.getOpt())) {
+        boolean masterNode = commandLine.hasOption(StartupOptions.MASTER_OPTION.getOpt());
+        if(masterNode) {
             LOGGER.info("Launching as master");
             networkingManager.initMaster();
         }
@@ -63,7 +64,14 @@ public class Worker {
         String connectIp = commandLine.getOptionValue(StartupOptions.CONNECT_OPTION.getOpt());
 
         LOGGER.info("Specified master ip: {}", connectIp);
-        networkingManager.initWorker(connectIp, 44123);
+        try {
+            networkingManager.initWorker(connectIp, 44123);
+        }
+        catch (Exception exception) {
+            LOGGER.info("Unable to init worker net-client", exception);
+            if(masterNode)
+                networkingManager.exitMaster();
+        }
     }
 
     public static void printHelp() {
