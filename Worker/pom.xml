@@ -20,7 +20,6 @@
         <dependency>
             <groupId>com.dandan2611.mcgen</groupId>
             <artifactId>Common</artifactId>
-            <version>0.2</version>
         </dependency>
     </dependencies>
 
