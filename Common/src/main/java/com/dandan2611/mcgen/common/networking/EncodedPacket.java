@@ -2,6 +2,7 @@ package com.dandan2611.mcgen.common.networking;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 
@@ -13,7 +14,11 @@ public class EncodedPacket {
         this.buffer = Unpooled.buffer();
     }
 
-    public void setData(JsonElement element) {
+    public EncodedPacket(ByteBuf buffer) {
+        this.buffer = buffer;
+    }
+
+    public void setData(JsonObject element) {
         if(buffer.readableBytes() > 0)
             throw new UnsupportedOperationException("Data already set");
         String json = new Gson().toJson(element);
